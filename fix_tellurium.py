@@ -13,4 +13,5 @@ import setIdFromNames as idfix
 print("sbml file is being imported from:\n", var.sbml_filename)
 print(var.sbml_filename[-5:])
 #fix.errorcheck(var.sbml_filename)
-idfix.SetIdFromNames(var.sbml_filename,var.sbml_cleanfile)
+new_ID = idfix()
+new_ID.main(var.sbml_filename,var.sbml_cleanfile)
