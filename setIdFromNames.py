@@ -6,7 +6,7 @@
 ##          the name, with all invalid characters removed. 
 ##
 ## @author  Frank T. Bergmann
-## 
+## @changes from original by M. Stuke
 ## 
 ## <!--------------------------------------------------------------------------
 ## This sample program is distributed under a different license than the rest
@@ -70,7 +70,7 @@ class SetIdFromNames(libsbml.IdentifierTransformer):
         return libsbml.LIBSBML_OPERATION_SUCCESS
 
     # find the new id
-    newId = self.getValidIdForName(element.getName())
+    newId = "id_" + self.getValidIdForName(element.getName()) 
 
     # set it
     element.setId(newId)
@@ -108,8 +108,7 @@ class SetIdFromNames(libsbml.IdentifierTransformer):
     id = baseString
     count = 1
     while self.existingIds.count(id) != 0:
-      id = "{0}_{1}".format(baseString, count)
-      count += 1
+        id = id + "_%i" % self.existingIds.count(id) 
     return id
 
 
