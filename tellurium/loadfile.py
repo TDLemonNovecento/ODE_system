@@ -1,6 +1,8 @@
 # rf: read file using tellurium package in python
 # author: M. Stuke, 05-Sept-2021
 
+## Works for ../main.py
+
 # Conda env information:
 # $ conda create --name lim_tellurium python=3
 # $ conda activate lim_tellurium
@@ -43,10 +45,13 @@ def filefixer(filepath, filepath_new = var.sbml_cleanfile):
 
 def loader(filepath, filepath_new = var.sbml_cleanfile):
     if errorcheck(filepath):
-        model = te.loadSBMLModel(filepath_new)
+        model = te.loadSBMLModel(filepath_new) #uses roadrunner
     else:
         print("model could not be loaded with tellurium")
         model = None 
     
     return(model)
+
+def getodes(model):
+    return(te.getODEsFromModel(model))
 

@@ -13,15 +13,25 @@ import sys
 #get filename
 import tellurium as te
 
+
 def simsettings(model):
     #returns current simulation settings
-    return(model)
+    print("get current antimony:")
+    str_antimony = model.getCurrentAntimony()
+    print(str_antimony)
+    return()
 
 def simchanger(model, newsettings ):
     #newsettings as tuple?
     updated_model = model
     return(updated_model)
 
-def simulator(model, start = 0, end = 20, points = 100):
+def simulator(model, end = 20):
     # runs simulation
-    m = model.simulate(start = start, end = end, points = points)
+    start = 0 #change here if desired other
+    m = model.simulate(start = start, end = end)
+    return(m)
+
+def save(results, resultfile = "out_simresults.py"):
+    # saves results into python file
+    return(resultfile)
