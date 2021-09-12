@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <annotation>
+    <SimBiology xmlns="http://www.mathworks.com">
+      <Version Major="6" Minor="1" Point="0"/>
+    </SimBiology>
+  </annotation>
+  <model id="mwd9128f5b_b7c1_4f99_8782_8af201158292" name="simple_eye_ODE">
+    <listOfUnitDefinitions>
+      <unitDefinition id="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" name="millimole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MWDERIVEDUNIT_milliliter__day" name="milliliter/day">
+        <listOfUnits>
+          <unit kind="metre" exponent="3"/>
+          <unit kind="second" exponent="-1"/>
+          <unit kind="dimensionless" multiplier="1.15740740740741e-11"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MWDERIVEDUNIT_1__day" name="1/day">
+        <listOfUnits>
+          <unit kind="second" exponent="-1"/>
+          <unit kind="dimensionless" multiplier="1.15740740740741e-05"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" name="milliliter">
+        <listOfUnits>
+          <unit kind="metre" exponent="3"/>
+          <unit kind="dimensionless" multiplier="1e-06"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="MWDERIVEDUNIT_millimole__millimole" name="millimole/millimole">
+        <listOfUnits>
+          <unit kind="dimensionless" exponent="1" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="ODE_Overview" size="1" constant="true"/>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="Aqueous Compartment" size="1" constant="true"/>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="Vitrious Compartment" size="1" constant="true"/>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="Retinal Compartment" size="1" constant="true"/>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="Serum Compartment" size="1" constant="true"/>
+      <compartment id="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" name="Peripheral Compartment" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" name="A" compartment="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" initialAmount="0" substanceUnits="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" name="V" compartment="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" initialAmount="0" substanceUnits="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" name="R" compartment="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" initialAmount="0" substanceUnits="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="mw73eddb35_6f89_4703_9ac0_70a521c657e6" name="S" compartment="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" initialAmount="0" substanceUnits="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="mw73eddb35_6f89_4703_9ac0_70a521c657e6" name="P" compartment="mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0" initialAmount="0" substanceUnits="MWBUILTINPREFIX_milli_MWBUILTINUNIT_mole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="mwf7fbd9ad_02ae_4cad_b57c_fc4edea82820" name="ClA" value="1" units="MWDERIVEDUNIT_milliliter__day" constant="true"/>
+      <parameter id="mw3d1437e0_7f26_4986_96f2_0f7356c09e8e" name="k_Q" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+      <parameter id="mwf34362c3_c21d_4544_8970_fe2ba9deabd9" name="Cl" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+      <parameter id="mwdcd46422_3229_4830_b237_a05eb7dc7366" name="V2" value="420" units="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" constant="true"/>
+      <parameter id="mw78f65f34_42ed_4ecd_b3d5_dc719da6df2f" name="V1" value="530" units="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" constant="true"/>
+      <parameter id="mwf0c1daa8_1c93_4469_a6a0_34edbaf4679c" name="VA" value="0.4" units="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" constant="true"/>
+      <parameter id="mw5b4e7c55_cf49_4b89_afb5_d1c08d5f489b" name="kf" value="1" units="MWDERIVEDUNIT_millimole__millimole" constant="true"/>
+      <parameter id="mwcf77988c_13f0_4fe2_affd_0bf5eea3c858" name="k_VA" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+      <parameter id="mwbcbc7a42_1aa6_4bdc_bc0a_c3e60eccd603" name="k_VR" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+      <parameter id="mw006d8706_7742_4c74_bcb0_0186b0c32567" name="k_R" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+      <parameter id="mw25ba905f_43d6_49d4_9b2f_417f0a440d9c" name="VR" value="1" units="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" constant="true"/>
+      <parameter id="mwaf610a7b_3f49_455f_8b92_86baab47119d" name="VV" value="1" units="MWBUILTINPREFIX_milli_MWBUILTINUNIT_liter" constant="true"/>
+      <parameter id="mwb163a830_28ea_4f6d_9a1e_038ccfd9bbd0" name="kf_1" value="1" constant="true"/>
+      <parameter id="mw479dc777_cb0d_4d48_92cd_dbe63f59cc61" name="kf_2" value="1" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="mwb4a4aae8_42f8_4562_a529_8033b0dc7a12" name="Clearance_Serum" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw73eddb35_6f89_4703_9ac0_70a521c657e6" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> mwf34362c3_c21d_4544_8970_fe2ba9deabd9 </ci>
+              <ci> mw73eddb35_6f89_4703_9ac0_70a521c657e6 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw3f4a7d9d_e8fe_48e4_a96e_187764c2a00f" name="R_serum_to_periphery" reversible="true">
+        <listOfReactants>
+          <speciesReference species="mw73eddb35_6f89_4703_9ac0_70a521c657e6" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw73eddb35_6f89_4703_9ac0_70a521c657e6" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> mw3d1437e0_7f26_4986_96f2_0f7356c09e8e </ci>
+                    <ci> mw73eddb35_6f89_4703_9ac0_70a521c657e6 </ci>
+                  </apply>
+                  <ci> mw78f65f34_42ed_4ecd_b3d5_dc719da6df2f </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> mw3d1437e0_7f26_4986_96f2_0f7356c09e8e </ci>
+                    <ci> mw73eddb35_6f89_4703_9ac0_70a521c657e6 </ci>
+                  </apply>
+                  <ci> mwdcd46422_3229_4830_b237_a05eb7dc7366 </ci>
+                </apply>
+              </apply>
+              <ci> mw90f1d930_ec43_4540_b9f0_cfcf79cfdda0 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw1aac4daf_5913_493a_85de_29909adcdcc5" name="Aqueous_to_Serum" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw73eddb35_6f89_4703_9ac0_70a521c657e6" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> mw5b4e7c55_cf49_4b89_afb5_d1c08d5f489b </ci>
+                <ci> mwf7fbd9ad_02ae_4cad_b57c_fc4edea82820 </ci>
+                <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+              </apply>
+              <ci> mwf0c1daa8_1c93_4469_a6a0_34edbaf4679c </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw2298bc04_6a23_473f_bcfb_98a3ac23755f" name="Retina-SerumTransport" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw73eddb35_6f89_4703_9ac0_70a521c657e6" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> mw5b4e7c55_cf49_4b89_afb5_d1c08d5f489b </ci>
+              <ci> mw76de6839_f823_48bc_8a11_2184b11fb99c </ci>
+              <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="mw76de6839_f823_48bc_8a11_2184b11fb99c" name="k_R" value="1" units="MWDERIVEDUNIT_1__day" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mwcb008bf3_33fd_4555_88a6_e371688b7b4a" name="Exchange Retinal_Vitrious" reversible="true">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> mwbcbc7a42_1aa6_4bdc_bc0a_c3e60eccd603 </ci>
+                    <ci> mwaf610a7b_3f49_455f_8b92_86baab47119d </ci>
+                  </apply>
+                  <ci> mw25ba905f_43d6_49d4_9b2f_417f0a440d9c </ci>
+                </apply>
+                <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> mwbcbc7a42_1aa6_4bdc_bc0a_c3e60eccd603 </ci>
+                <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw8e60dcca_5218_48aa_b3b7_dc34fb23bfe8" name="Reaction_3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> mwcf77988c_13f0_4fe2_affd_0bf5eea3c858 </ci>
+              <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw7cfb006a_ec7a_4291_97c6_37ef4deb77b3" name="aqueous lost" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <ci> mw5b4e7c55_cf49_4b89_afb5_d1c08d5f489b </ci>
+                </apply>
+                <ci> mwf7fbd9ad_02ae_4cad_b57c_fc4edea82820 </ci>
+                <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+              </apply>
+              <ci> mwf0c1daa8_1c93_4469_a6a0_34edbaf4679c </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="mw8ec2717e_619f_4602_9dc9_67904f5dec36" name="retinal lost" reversible="false">
+        <listOfReactants>
+          <speciesReference species="mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> mw5b4e7c55_cf49_4b89_afb5_d1c08d5f489b </ci>
+              </apply>
+              <ci> mw006d8706_7742_4c74_bcb0_0186b0c32567 </ci>
+              <ci> mw2d2f79f7_6375_4b4e_8efb_a3da97a9b933 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
