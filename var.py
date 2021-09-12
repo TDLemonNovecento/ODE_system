@@ -11,4 +11,3 @@ m_figuremaker = path + "createfigure.m"
 
 sbml_cleanfile = path + "cleanfile.sbml"
 plotfile = path + "plotfile.py"
-

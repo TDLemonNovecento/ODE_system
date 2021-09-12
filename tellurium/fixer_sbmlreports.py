@@ -1,4 +1,5 @@
 # file intended to include functions that may help with bad matlab exports
+# Not further used as for the cases that were encountered, manual cleaning was performed
 # Author: M. Stuke, 05-Sept-2019
 
 # use libsbml: $ pip install python-libsbml
