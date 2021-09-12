@@ -1,7 +1,6 @@
 # M.Stuke, 27.08.2021
 
 # stores private path variables
-# Here:example files of eye system
 
 import os
 

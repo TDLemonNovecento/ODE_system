@@ -1,0 +1,28 @@
+## Eye Parameters
+
+VV = 2.17     # Volume of Vitreous [mL]
+VR = 0.073   # Volume of Retia [mL]
+VA = 0.13   # Volume of Aqueous [mL]
+
+## Reaction constants relations [1/day]
+
+kRV = kVR * VV / VR
+
+k12 = Q/V1 # Q is intercompartment clearance between serum (S) and Periphery (P) (V1 and V2, respectively)
+k21 = Q/V2
+
+## ODE in mL and days
+## One eye is modeled (V, A, R), but 2 eyes contribute to systemic and peripheral amount (Factor 2*F)
+## F is loss factor due to degradation before entering serum
+ddt_V  = - V*kVR + R*kRV - V * kVA
+ddt_A  =                   V * kVA - A*ClA/VA
+ddt_R  =   V*kVR - R*kRV                  - R * kR
+ddt_S  =   2*F*A*ClA/VA  + 2 * F*R * kR  + k21*P - k12* S - Cl/V1 * S
+ddt_P  =                                                 - k21*P + k12* S
+
+## Convert mg to ug/mL (absolute amount of drug to concentrations)
+VcugmL = V/VV *  1000
+AcugmL = A/VA *  1000
+RcugmL = R/VR *  1000
+ScugmL = S/V1  *  1000
+
