@@ -6,7 +6,7 @@ import os
 
 path = os.getcwd() + "/EYE/"
 
-sbml_filename = path + "eye_ode.sbml"
+sbml_filename = path + "eye_model.sbml"
 m_figuremaker = path + "createfigure.m"
 
 sbml_cleanfile = path + "cleanfile.sbml"

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <annotation>
+    <SimBiology xmlns="http://www.mathworks.com">
+      <Version Major="6" Minor="1" Point="0"/>
+    </SimBiology>
+  </annotation>
+  <model id="id_simple_eye_ODE" name="simple_eye_ODE">
+    <listOfUnitDefinitions>
+      <unitDefinition id="id_millimole" name="millimole">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" multiplier="0.001"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="id_milliliter_day" name="milliliter/day">
+        <listOfUnits>
+          <unit kind="metre" exponent="3"/>
+          <unit kind="second" exponent="-1"/>
+          <unit kind="dimensionless" multiplier="1.15740740740741e-11"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="id__1_day" name="1/day">
+        <listOfUnits>
+          <unit kind="second" exponent="-1"/>
+          <unit kind="dimensionless" multiplier="1.15740740740741e-05"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="id_milliliter" name="milliliter">
+        <listOfUnits>
+          <unit kind="metre" exponent="3"/>
+          <unit kind="dimensionless" multiplier="1e-06"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="id_millimole_millimole" name="millimole/millimole">
+        <listOfUnits>
+          <unit kind="dimensionless" exponent="1" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="id_ODE_Overview" name="ODE_Overview" size="1" constant="true"/>
+      <compartment id="id_Aqueous_Compartment" name="Aqueous Compartment" size="1" constant="true"/>
+      <compartment id="id_Vitrious_Compartment" name="Vitrious Compartment" size="1" constant="true"/>
+      <compartment id="id_Retinal_Compartment" name="Retinal Compartment" size="1" constant="true"/>
+      <compartment id="id_Serum_Compartment" name="Serum Compartment" size="1" constant="true"/>
+      <compartment id="id_Peripheral_Compartment" name="Peripheral Compartment" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="id_A" name="A" compartment="id_ODE_Overview" initialAmount="0" substanceUnits="id_millimole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="id_V" name="V" compartment="id_ODE_Overview" initialAmount="0" substanceUnits="id_millimole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="id_R" name="R" compartment="id_ODE_Overview" initialAmount="0" substanceUnits="id_millimole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="id_S" name="S" compartment="id_ODE_Overview" initialAmount="0" substanceUnits="id_millimole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="id_P" name="P" compartment="id_ODE_Overview" initialAmount="0" substanceUnits="id_millimole" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="id_ClA" name="ClA" value="1" units="id_milliliter_day" constant="true"/>
+      <parameter id="id_k_Q" name="k_Q" value="1" units="id__1_day" constant="true"/>
+      <parameter id="id_Cl" name="Cl" value="1" units="id__1_day" constant="true"/>
+      <parameter id="id_V2" name="V2" value="420" units="id_milliliter" constant="true"/>
+      <parameter id="id_V1" name="V1" value="530" units="id_milliliter" constant="true"/>
+      <parameter id="id_VA" name="VA" value="0.4" units="id_milliliter" constant="true"/>
+      <parameter id="id_kf" name="kf" value="1" units="id_millimole_millimole" constant="true"/>
+      <parameter id="id_k_VA" name="k_VA" value="1" units="id__1_day" constant="true"/>
+      <parameter id="id_k_VR" name="k_VR" value="1" units="id__1_day" constant="true"/>
+      <parameter id="id_k_R" name="k_R" value="1" units="id__1_day" constant="true"/>
+      <parameter id="id_VR" name="VR" value="1" units="id_milliliter" constant="true"/>
+      <parameter id="id_VV" name="VV" value="1" units="id_milliliter" constant="true"/>
+      <parameter id="id_kf_1" name="kf_1" value="1" constant="true"/>
+      <parameter id="id_kf_2" name="kf_2" value="1" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="id_Clearance_Serum" name="Clearance_Serum" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_S" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> id_Cl </ci>
+              <ci> id_S </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_R_serum_to_periphery" name="R_serum_to_periphery" reversible="true">
+        <listOfReactants>
+          <speciesReference species="id_S" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="id_S" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> id_k_Q </ci>
+                    <ci> id_S </ci>
+                  </apply>
+                  <ci> id_V1 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> id_k_Q </ci>
+                    <ci> id_S </ci>
+                  </apply>
+                  <ci> id_V2 </ci>
+                </apply>
+              </apply>
+              <ci> id_ODE_Overview </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_Aqueous_to_Serum" name="Aqueous_to_Serum" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="id_S" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> id_kf </ci>
+                <ci> id_ClA </ci>
+                <ci> id_A </ci>
+              </apply>
+              <ci> id_VA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_Retina_SerumTransport" name="Retina-SerumTransport" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="id_S" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> id_kf </ci>
+              <ci> id_k_R </ci>
+              <ci> id_A </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="id_k_R" name="k_R" value="1" units="id__1_day" constant="true"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_Exchange_Retinal_Vitrious" name="Exchange Retinal_Vitrious" reversible="true">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> id_k_VR </ci>
+                    <ci> id_VV </ci>
+                  </apply>
+                  <ci> id_VR </ci>
+                </apply>
+                <ci> id_A </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> id_k_VR </ci>
+                <ci> id_A </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_Reaction_3" name="Reaction_3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> id_k_VA </ci>
+              <ci> id_A </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_aqueous_lost" name="aqueous lost" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <ci> id_kf </ci>
+                </apply>
+                <ci> id_ClA </ci>
+                <ci> id_A </ci>
+              </apply>
+              <ci> id_VA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="id_retinal_lost" name="retinal lost" reversible="false">
+        <listOfReactants>
+          <speciesReference species="id_A" stoichiometry="1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <apply>
+                <minus/>
+                <cn type="integer"> 1 </cn>
+                <ci> id_kf </ci>
+              </apply>
+              <ci> id_k_R </ci>
+              <ci> id_A </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

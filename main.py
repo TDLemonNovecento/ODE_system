@@ -2,10 +2,8 @@
 # Author: M. Stuke, 08-Sept-2021
 
 import sys
-sys.path.insert(0, '..') #add upstream folders for import
 
 import var
-#import setIdFromNames as idfix
 
 ## SET FILEPATHS
 #filepath = var.sbml_filename
@@ -22,16 +20,15 @@ end = 12000
 points = 10000 #does not work with tellurium
 
 # SET FLAGS FOR THIS RUN
-CHECKFILE = True
+CHECKFILE = False
 FIXFILE = False
-SAVE_NEWFILE = True
 IMPORTFILE = True
-SEE_SIMSETTINGS = False
-CHANGE_SIMSETTINGS = False
+SEE_SIMSETTINGS = True
+CHANGE_SIMSETTINGS = True
 RUN_SIMULATION = True
 EXPORT_SIMRESULTS = False
 GETODES = False
-# Plotting requires import of specified plotting procedure
+PLOT_EXAMPLE = True # Plotting requires import of specified plotting procedure
 # Add as many as you like at end of file
 
 IMPORT_FLAG = False # raised as false if file contains errors
@@ -40,14 +37,13 @@ IMPORT_FLAG = False # raised as false if file contains errors
 if CHECKFILE and IMPORTFILE:
     FIXFILE = True
 
-if SAVE_NEWFILE:
     print("sbml file is being saved after changes to:\n", new_filepath)
 
 
 ### Import method specific functions, start run
 sys.path.insert(0, method) #add folders for import
 from loadfile import errorcheck, filefixer, loader, getodes  #should import method specific filefixer
-from runsimulation import simsettings, simchanger, simulator
+from simfile import simsettings, simchanger, simulator
 from plotfile import *
 
 
@@ -78,23 +74,31 @@ if IMPORTFILE:
        sys.exit()
 
     if SEE_SIMSETTINGS:
-       print("current simulation settings")
-       simsettings(model)
+        print("current simulation settings")
+        params = simsettings(model)
+        print("to change settings, add information on following data:")
+        print(params)
 
     if CHANGE_SIMSETTINGS:
        # get user input for new settings?
        from new_simsettings import simsettings
-       simchanger(model, simsettings)
+       model = simsettings(model)
 
     if RUN_SIMULATION:
-        results = simulator(model, end)
-        print(results.colnames)
+        results = simulator(model, end, points)
+        #print(results.colnames)
+        
         if EXPORT_SIMRESULTS:
-           save(results, resultspath)
+           save(results, resultspath) #not running yet
+        if PLOT_EXAMPLE:
+            simpleplot(model, results, end = end, steps = points)
+
 
 if GETODES:
     print("\n######\n### These are the ODE's of the Model\n")
     print(getodes(model))
 
-plotImpB_loners(model, end = end, steps = points)
-plotImpB_GTP(model, end= end, steps = points)
+## Add all desired plotting regimes below, examples given for tellurium
+
+#plotImpB_loners(model, end = end, steps = points)
+#plotImpB_GTP(model, end= end, steps = points)

@@ -5,6 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tellurium as te
 
+def simpleplot(model, results, end=1000, steps=1000, filename = None):
+    if filename == None:
+        filename = "trialplot.png"
+    model.plot(results)
+    plt.savefig(filename)
+    print("Simple plot was saved to", filename)
+    return(filename)
+
 def plotImpB_GTP(model, results):
     plt.xlabel("time [second]")
     plt.ylabel("GTP")
