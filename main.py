@@ -16,19 +16,19 @@ method = "tellurium" # or sbmltoode, ect (see available folders)
 
 ## SET SIMULATION SETTINGS
 start = 0
-end = 12000
-points = 10000 #does not work with tellurium
+end = 12
+points = 17 #does not work with tellurium
 
 # SET FLAGS FOR THIS RUN
-CHECKFILE = False
-FIXFILE = False
-IMPORTFILE = True
-SEE_SIMSETTINGS = True
-CHANGE_SIMSETTINGS = True
-RUN_SIMULATION = True
-EXPORT_SIMRESULTS = False
-GETODES = False
-PLOT_EXAMPLE = True # Plotting requires import of specified plotting procedure
+CHECKFILE = False  # use sbmlutils to check conformity
+FIXFILE = False  # set IDs from names
+IMPORTFILE = True  # te.loadSBMLModel
+SEE_SIMSETTINGS = True  # dict(model) or antimony format
+CHANGE_SIMSETTINGS = True  # initial conditions from new_simsettings.py
+RUN_SIMULATION = True  # get NamedArray
+EXPORT_SIMRESULTS = False  # [not implemented]
+GETODES = False  # te.getODEsFromModel
+PLOT_EXAMPLE = True  # Plotting requires import of specified plotting procedure; cf. `simpleplot` from plotfile.py
 # Add as many as you like at end of file
 
 IMPORT_FLAG = False # raised as false if file contains errors
@@ -91,7 +91,7 @@ if IMPORTFILE:
         if EXPORT_SIMRESULTS:
            save(results, resultspath) #not running yet
         if PLOT_EXAMPLE:
-            simpleplot(model, results, end = end, steps = points)
+            simpleplot(model, results, end = end, steps = points)  # can add filename
 
 
 if GETODES:
