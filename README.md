@@ -13,6 +13,7 @@ Plotting regimes need to be adapted to your specific model, this can be done in 
 steps to get ackquainted:
 
 open main.py, change all Booleans to False except for the first:
+```python
 $ # SET FLAGS FOR THIS RUN
 $ CHECKFILE = True
 $ FIXFILE = False #True
@@ -24,18 +25,22 @@ $ RUN_SIMULATION = False #True
 $ EXPORT_SIMRESULTS = False
 $ GETODES = False
 $ PLOT_EXAMPLE = False # Plotting requires import of specified plotting procedure
+```
 
 Create a python virtual environment running python 3 and containing tellurium as well as sbmlutils,
 e.g. such as:
+```python
 $ # Conda env information:
 $ conda create --name sbml_tellurium python=3
 $ conda activate sbml_tellurium
 $ pip install tellurium
 $ pip install sbmlutils
+```
 
 Now run the main.py file inside this environment:
+```python
 $ python main.py #(using linux)
-
+```
 You should see black, red and blue text on your console:
 ERROR:root:
 --------------------------------------------------------------------------------
@@ -47,8 +52,9 @@ check time (s)           : 0.003
 --------------------------------------------------------------------------------
 
 The sbml file you just read contains errors. We want to fix them, for that, change the 
-$ FIXFILE = True
-
+```python
+  $ FIXFILE = True
+```
 Run the main.py file again. The file has been rewritten to the filename defined in var.py, In this case:
 var.sbml_cleanfile is ./EYE/cleanfile.sbml
 After the fix, the error message from sbmlutils reads:
@@ -65,12 +71,15 @@ You may want to fix manually the double id by searching for the variable name in
 
 
 Now, change the file to be imported into main.py to the fixed, clean file,
+```python
 $ ## SET FILEPATHS
 $ #filepath = var.sbml_filename
 $ new_filepath = var.sbml_cleanfile
 $ filepath = new_filepath #for fixed files
+```
 
 and adapt the flags as follows:
+```python
 $ # SET FLAGS FOR THIS RUN
 $ CHECKFILE = True
 $ FIXFILE = False
@@ -80,13 +89,15 @@ $ CHANGE_SIMSETTINGS = False
 $ RUN_SIMULATION = False #True
 $ EXPORT_SIMRESULTS = False
 $ GETODES = False
-$ PLOT_EXAMPLE = False # Plotting requires impo
+$ PLOT_EXAMPLE = False
+```
 
 The lowest message in the console should read:
 model of type <class 'tellurium.roadrunner.extended_roadrunner.ExtendedRoadRunner'> was successfully imported
 
 Next, we can do some simulations and modeling:
 and adapt the flags as follows:
+```python
 $ CHECKFILE = True
 $ FIXFILE = False
 $ IMPORTFILE = True
@@ -96,6 +107,7 @@ $ RUN_SIMULATION = True
 $ EXPORT_SIMRESULTS = False
 $ GETODES = False
 $ PLOT_EXAMPLE = True
+```
 
 The console will show all settings of the model. As you can see, the Species initializations are 0.
   // Species initializations:
