@@ -13,7 +13,7 @@ Plotting regimes need to be adapted to your specific model, this can be done in 
 steps to get ackquainted:
 
 open main.py, change all Booleans to False except for the first:
-# SET FLAGS FOR THIS RUN
+$ # SET FLAGS FOR THIS RUN
 $ CHECKFILE = True
 $ FIXFILE = False #True
 $ SAVE_NEWFILE = False
@@ -27,11 +27,11 @@ $ PLOT_EXAMPLE = False # Plotting requires import of specified plotting procedur
 
 Create a python virtual environment running python 3 and containing tellurium as well as sbmlutils,
 e.g. such as:
-# Conda env information:
-# $ conda create --name sbml_tellurium python=3
-# $ conda activate sbml_tellurium
-# $ pip install tellurium
-# $ pip install sbmlutils
+$ # Conda env information:
+$ conda create --name sbml_tellurium python=3
+$ conda activate sbml_tellurium
+$ pip install tellurium
+$ pip install sbmlutils
 
 Now run the main.py file inside this environment:
 $ python main.py #(using linux)
