@@ -129,6 +129,4 @@ Adapt changes as needed
 
 Run again.
 
-Issue: steps are not adequately changed, simulation runs with 50 steps only. 
-
 
