@@ -4,7 +4,12 @@ Small ODE system of an eye to play around
 Additionally: Some python packages and uses thereof
 to open .sbml files and run simulations
 
-Packages considered: Tellurium, SBMLtoODE, libRoadRunner
+## R Implementation
+Install RStudio, open the shiny files and execute. You should be able to play around with the system in a browser.
+
+## Python Implementation
+
+Packages considered for Python: Tellurium (relies on roadrunner)
 
 change files in var.py according to desired file location before running
 change booleans and method in main.py before running and import desired plotting regime
