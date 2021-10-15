@@ -57,14 +57,14 @@ validation warnings(s)   : 0
 check time (s)           : 0.003
 --------------------------------------------------------------------------------
 ```
-The sbml file you just read contains errors. We want to fix them, for that, change the 
+The sbml file you just read contains errors. For fixing them, change the 
 ```python
   $ FIXFILE = True
 ```
 Run the main.py file again. The file has been rewritten to the filename defined in var.py, In this case:
 var.sbml_cleanfile is ./EYE/cleanfile.sbml
 After the fix, the error message from sbmlutils reads:
-
+```bash
 --------------------------------------------------------------------------------
 <SBMLDocument>
 valid                    : TRUE
@@ -72,7 +72,7 @@ validation error(s)      : 0
 validation warnings(s)   : 1
 check time (s)           : 0.003
 --------------------------------------------------------------------------------
-
+```
 You may want to fix manually the double id by searching for the variable name in the cleanfile.sbml and changing it.
 
 
@@ -116,6 +116,7 @@ $ PLOT_EXAMPLE = True
 ```
 
 The console will show all settings of the model. As you can see, the Species initializations are 0.
+```bash
   // Species initializations:
   id_A = 0;
   id_A has id_millimole_per_volume;
@@ -127,7 +128,7 @@ The console will show all settings of the model. As you can see, the Species ini
   id_S has id_millimole_per_volume;
   id_P = 0;
   id_P has id_millimole_per_volume;
-
+```
 
 Let's change this.
 go to ./tellurium/new_simsettings.py
