@@ -47,6 +47,7 @@ Now run the main.py file inside this environment:
 $ python main.py #(using linux)
 ```
 You should see black, red and blue text on your console:
+```bash
 ERROR:root:
 --------------------------------------------------------------------------------
 <SBMLDocument>
@@ -55,7 +56,7 @@ validation error(s)      : 8
 validation warnings(s)   : 0
 check time (s)           : 0.003
 --------------------------------------------------------------------------------
-
+```
 The sbml file you just read contains errors. We want to fix them, for that, change the 
 ```python
   $ FIXFILE = True
